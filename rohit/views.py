@@ -12,16 +12,22 @@ from .forms import create_person_form
 def home(request):
     form = create_person_form()
 
+    error = 'Errors in the form, please verify.'
+
+    context = {
+        
+    }
+
     if request.method == 'POST':
         form = create_person_form(request.POST)
         #print(form.cleaned_data['Name'])
         if form.is_valid():
             form.save()
             return redirect('success', form.instance.id)
-    
-    context = {
-        'form': form
-    }
+        else:
+            context['error'] = error
+
+    context['form'] = form
     return render(request, 'rohit/index.html', context)
 
 

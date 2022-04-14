@@ -58,7 +58,7 @@ class create_person_form(ModelForm):
 
         if len(username) < 8:
             self._errors['name'] = self.error_class([
-                'Minimum 5 characters required'])
+                'Minimum 8 characters required'])
         elif (fun1(username)):
             self._errors['name'] = self.error_class([
                 'Characters should be uppercase, lowercase or whitespaces.'])
