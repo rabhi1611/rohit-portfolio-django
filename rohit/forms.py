@@ -4,10 +4,19 @@ from rohit import models
 from django import forms
 
 class create_person_form(ModelForm):
+
     class Meta:
         model = models.Person
         fields = "__all__"
 
+
+    def __init__(self, *args, **kwargs):
+        super(create_person_form, self).__init__(*args, **kwargs)
+
+        self.fields['name'].widget.attrs['placeholder'] = 'Your full name'
+        self.fields['phone'].widget.attrs['placeholder'] = 'Your phone number'
+        self.fields['email'].widget.attrs['placeholder'] = 'Your email address'
+        self.fields['message'].widget.attrs['placeholder'] = 'Your message!'
 
     def clean(self):
  
