@@ -2,9 +2,12 @@ import imp
 from django.forms import ModelForm
 from rohit import models
 from django import forms
+from captcha.fields import ReCaptchaField
+from captcha.widgets import ReCaptchaV2Checkbox
 
 class create_person_form(ModelForm):
-
+    
+    captcha = ReCaptchaField(widget=ReCaptchaV2Checkbox)
     class Meta:
         model = models.Person
         fields = "__all__"

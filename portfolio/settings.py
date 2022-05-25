@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rohit',
     'crispy_forms',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +145,7 @@ import django_heroku
 django_heroku.settings(locals(), staticfiles=False)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+
+RECAPTCHA_PUBLIC_KEY = '6LcGyhsgAAAAAIGj9Oiw99ZuxN3H14s_TMDtJ8Pw'
+RECAPTCHA_PRIVATE_KEY = '6LcGyhsgAAAAAM9CV7gTHmM-kZ1AT00kgnOPxtui'
