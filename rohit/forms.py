@@ -53,6 +53,8 @@ class create_person_form(ModelForm):
 
 
         def fun3(email):
+            if email is None:
+                return 1
             idx = len(email) - 9
             if email[idx] != 'g':
                 return 1
@@ -85,7 +87,7 @@ class create_person_form(ModelForm):
                 'Phone number should be numeric.'])
 
 
-        if(len(email) < 11):
+        if(email is not None and len(email) < 11):
             self._errors['email'] = self.error_class([
                 'Email should be of atleast 11 characters.'])
 
