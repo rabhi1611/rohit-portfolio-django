@@ -7,7 +7,7 @@ class Person(models.Model):
     phone = models.CharField(max_length=12)
     email = models.EmailField()
     message = models.TextField(max_length=500, default="")
-    date = models.DateField(auto_now  = True)
+    date = models.DateField(auto_now  = False)
 
     def __str__(self):
         return self.name

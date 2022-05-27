@@ -29,7 +29,7 @@ def home(request):
 
     context['form'] = form
 
-    all_data = models.Person.objects.all()
+    all_data = models.Person.objects.all().order_by('-date')
     context['datas'] = all_data
 
     return render(request, 'rohit/index.html', context)
@@ -43,7 +43,7 @@ def success(request, pk):
     return render(request, 'rohit/success.html', context)
 
 def blog(request):
-    all_data = models.Person.objects.all()
+    all_data = models.Person.objects.all().order_by('-date')
     context = {
         'datas' : all_data
     }
