@@ -28,6 +28,10 @@ def home(request):
             context['error'] = error
 
     context['form'] = form
+
+    all_data = models.Person.objects.all()
+    context['datas'] = all_data
+
     return render(request, 'rohit/index.html', context)
 
 
@@ -37,3 +41,11 @@ def success(request, pk):
         'name': obj.name
     }
     return render(request, 'rohit/success.html', context)
+
+def blog(request):
+    all_data = models.Person.objects.all()
+    context = {
+        'datas' : all_data
+    }
+
+    return render(request, 'rohit/blog-minibar.html', context)

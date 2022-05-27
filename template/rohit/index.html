@@ -128,7 +128,7 @@
       </div>
     </div>
     <div class="container py-5">
-      <h1 class="text-center fw-normal wow fadeIn">My Skills</h1>
+      <h1 class="text-center fg-dark wow fadeInUp">My Skills</h1>
       <div class="row py-3">
         <div class="col-md-6">
           <div class="px-lg-3">
@@ -175,7 +175,7 @@
     <div class="container pt-5">
       <div class="row">
         <div class="col-md-6 wow fadeInRight">
-          <h2 class="fw-normal">Education</h2>
+          <h2 class="fg-dark wow fadeInUp">Education</h2>
           <ul class="timeline mt-4 pr-md-5">
             <li>
               <div class="title">2019-present</div>
@@ -191,7 +191,7 @@
           </ul>
         </div>
         <div class="col-md-6 wow fadeInRight" data-wow-delay="200ms">
-          <h2 class="fw-normal">Experience</h2>
+          <h2 class="fg-dark wow fadeInUp">Experience</h2>
           <ul class="timeline mt-4 pr-md-5">
             <li>
               <div class="title">2020 - Current</div>
@@ -217,7 +217,7 @@
           </ul>
         </div>
         <div class="col-md-6 wow fadeInRight" data-wow-delay="200ms">
-          <h2 class="fw-normal">Achievements</h2>
+          <h2 class="fg-dark wow fadeInUp">Achievements</h2>
           <ul class="timeline mt-4 pr-md-5">
             <li>
               <div class="title active"><blockquote><a href="https://www.codechef.com/users/rabhi1611" target="_blank"><b>Codechef</b></a></blockquote></div>
@@ -261,7 +261,7 @@
 
 
         <div class="col-md-6 wow fadeInRight" data-wow-delay="200ms">
-          <h2 class="fw-normal">Projects</h2>
+          <h2 class="fg-dark wow fadeInUp">Projects</h2>
           <ul class="timeline mt-4 pr-md-5">
             <li>
               <div class="title active"><BLockquote><a href="https://rohit-blogapp.herokuapp.com/" target="_blank"><b>Blog Application</b></a></BLockquote></div>
@@ -301,9 +301,38 @@
     </div>
   </div>
   <br>
+
+  <!-- Page Blog -->
+  <div class="vg-page page-blog" id="blog">
+    <h1 class="text-center fg-dark wow fadeInUp">Latest Messages</h1>
+    <div class="container">
+      <div class="row post-grid">
+        {% for data in datas|slice:":3" %}
+        <div class="col-md-6 col-lg-4 wow fadeInUp">
+          <div class="card">
+            <div class="img-place">
+              <img src="../assets/img/work/work-9.jpg" alt="">
+            </div>
+            <div class="caption">
+              <a href="javascript:void(0)" class="post-category">{{data.name}}</a>
+              <a href="#" class="post-title">{{data.message}}</a>
+              <span class="post-date"><span class="sr-only">Published on</span> {{data.date}}</span>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        
+        <div class="col-12 text-center py-3 wow fadeInUp">
+          <a href="{% url 'blog' %}" class="btn btn-theme">See All Post</a>
+        </div>
+      </div>
+    </div>
+  </div> <!-- End page blog -->
+
+
   <div id="contac" class="contact">
     <div class="container">
-      <h2 class="fw-normal" id = "contact">Any message? feel free to write!</h2>
+      <h2 class="fg-dark wow fadeInUp" id = "contact">Any message? feel free to write!</h2>
       <br>
       <div class="row">
          <div class="col-md-12 ">
@@ -328,7 +357,7 @@
           <div class="footer-info">
             <p><i class="far fa-map"></i> Where to find me</p>
             <hr class="divider">
-            <p class="fs-large fg-white"> AKGEC: Ajay Kumar Garg Engineering College, Ghaziabad, 27th KM Milestone, Delhi - Meerut Expy, Ghaziabad, Uttar Pradesh 201009 .</p>
+            <p class="fadeInUp fs-large fg-white"> AKGEC: Ajay Kumar Garg Engineering College, Ghaziabad, 27th KM Milestone, Delhi - Meerut Expy, Ghaziabad, Uttar Pradesh 201009 .</p>
           </div>
         </div>
         <div class="col-md-6 col-lg-3 py-3">

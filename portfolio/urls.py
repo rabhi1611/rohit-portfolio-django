@@ -19,6 +19,7 @@ from rohit import views
 
 urlpatterns = [
     path('', views.home, name = 'home'),
+    path('blog', views.blog, name = 'blog'),
     path('success/<pk>', views.success, name = 'success'),
     path('admin/', admin.site.urls),
 ]
