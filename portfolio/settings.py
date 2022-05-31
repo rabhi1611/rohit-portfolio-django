@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 from pickle import TRUE
+import os
+
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+_rsrjsf%tx(z^ul!wadg5j-)yx6y_))6dchz(ie6qgzirjgs#'
+
+SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -147,5 +152,5 @@ django_heroku.settings(locals(), staticfiles=False)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
-RECAPTCHA_PUBLIC_KEY = '6LcGyhsgAAAAAIGj9Oiw99ZuxN3H14s_TMDtJ8Pw'
-RECAPTCHA_PRIVATE_KEY = '6LcGyhsgAAAAAM9CV7gTHmM-kZ1AT00kgnOPxtui'
+RECAPTCHA_PUBLIC_KEY = str(os.getenv('RECAPTCHA_PUBLIC_KEY'))
+RECAPTCHA_PRIVATE_KEY = str(os.getenv('RECAPTCHA_PRIVATE_KEY'))
