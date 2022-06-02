@@ -14,8 +14,9 @@
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5727536562878006"
      crossorigin="anonymous"></script>
+
+    <link rel="shortcut icon" href="{% static 'assets/favicon.ico' %}" type="image/x-icon">
      
-  <link rel="shortcut icon" type="image/ico" href="../assets/favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="{% static 'assets/css/themify-icons.css' %}">
   
@@ -88,14 +89,14 @@
           </div>
         </div>-->
         <div class="row post-grid">
-          {% for data in datas %}
+          {% for data in page_obj %}
           <div class="col-md-6 col-lg-4">
             <div class="card">
               <div class="img-place">
                 <img src="../assets/img/work/work-1.jpg" alt="">
               </div>
               <div class="caption">
-                <a href="javascript:void(0)" class="post-category">{{data.name}}</a>
+                <a href="javascript:void(0)" class="post-category">{{data.name | upper}}</a>
                 <!-- <a href="#" class="post-title">{{data.message}}</a> -->
                 <span class="post-date"><span class="sr-only">Published on</span> {{data.date}}</span>
               </div>
@@ -104,7 +105,7 @@
           {% endfor %}
           <div class="col-12 py-3">
             <ul class="pagination justify-content-center">
-              <li class="page-item">
+              <!--<li class="page-item">
                 <a href="" class="page-link">Prev</a>
               </li>
               <li class="page-item active">
@@ -115,10 +116,32 @@
               </li>
               <li class="page-item">
                 <a href="" class="page-link">3</a>
-              </li>
+              </li> 
               <li class="page-item">
                 <a href="" class="page-link">Next</a>
               </li>
+              -->
+              <li class="page-item">
+                      {% if page_obj.has_previous %}
+                          <a href="?page=1" class="page-link">&laquo; first</a>
+                          <a href="?page={{ page_obj.previous_page_number }}" class="page-link">previous</a>
+                      {% endif %}
+              </li>
+
+              <li class="page-item">
+                <span class="page-link">
+                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+              </li>
+
+              <li class="page-item">
+                {% if page_obj.has_next %}
+                          <a href="?page={{ page_obj.next_page_number }}" class="page-link">next</a>
+                          <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">last &raquo;</a>
+                {% endif %}
+              </li>
+
+
             </ul>
           </div>
         </div>

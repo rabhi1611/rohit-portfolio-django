@@ -2,6 +2,7 @@ from pyexpat import model
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, response
+from django.core.paginator import Paginator
 
 from rohit import models
 # Create your views here.
@@ -47,5 +48,12 @@ def blog(request):
     context = {
         'datas' : all_data
     }
+
+    paginator = Paginator(all_data, 9)
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context['page_obj'] = page_obj
 
     return render(request, 'rohit/blog-minibar.html', context)
