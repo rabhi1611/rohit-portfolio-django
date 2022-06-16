@@ -32,9 +32,12 @@ class create_person_form(ModelForm):
         email = self.cleaned_data.get('email')
         message = self.cleaned_data.get('message')
 
+
         # conditions to be met for the username length
 
         def fun1(username):
+            if username is None:
+                return 1
             for x in username:
                 if (x >= 'a' and x <= 'z') or (x >= 'A' and x <= 'Z') or (x == ' '):
                     continue
@@ -44,6 +47,8 @@ class create_person_form(ModelForm):
 
 
         def fun2(phone):
+            if phone is None:
+                return 1
             for x in phone:
                 if(x >= '0' and x <= '9'):
                     continue
@@ -70,7 +75,7 @@ class create_person_form(ModelForm):
             return 0 
 
 
-        if len(username) < 8:
+        if username is not None and len(username) < 8:
             self._errors['name'] = self.error_class([
                 'Minimum 8 characters required'])
         elif (fun1(username)):
@@ -78,7 +83,7 @@ class create_person_form(ModelForm):
                 'Characters should be uppercase, lowercase or whitespaces.'])
 
 
-        if len(phone) < 10:
+        if phone is not None and len(phone) < 10:
             self._errors['phone'] = self.error_class([
                 'Phone number should be of the form 910123456789, where 91 is the country code.'])
         
@@ -95,7 +100,9 @@ class create_person_form(ModelForm):
             self._errors['email'] = self.error_class([
                 'Last 9 characters should be gmail.com.'])
 
-
+        if message is None:
+            self._errors['message'] = self.error_class([
+                'Write something!.'])
 
         # return any errors if found
         return self.cleaned_data
