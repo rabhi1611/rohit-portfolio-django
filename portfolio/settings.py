@@ -152,5 +152,5 @@ django_heroku.settings(locals(), staticfiles=False)
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
-RECAPTCHA_PUBLIC_KEY = '6LceuzEgAAAAAG0_EFoJjISakRqBustD-EQfISj1'
+RECAPTCHA_PUBLIC_KEY = '6LcOaXogAAAAAFN2ULOaRCoW-GZqWrayRzcJaUWU'
 RECAPTCHA_PRIVATE_KEY = str(os.getenv('RECAPTCHA_PRIVATE_KEY'))
