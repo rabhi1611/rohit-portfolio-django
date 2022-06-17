@@ -34,7 +34,7 @@ if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
 #SECRET_KEY = str(os.getenv('SECRET_KEY'))
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = str(os.environ['SECRET_KEY'])
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -161,4 +161,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
 RECAPTCHA_PUBLIC_KEY = '6LcOaXogAAAAAFN2ULOaRCoW-GZqWrayRzcJaUWU'
-RECAPTCHA_PRIVATE_KEY = os.environ['RECAPTCHA_PRIVATE_KEY']
+RECAPTCHA_PRIVATE_KEY = str(os.environ['RECAPTCHA_PRIVATE_KEY'])
