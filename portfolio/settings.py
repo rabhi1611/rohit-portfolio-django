@@ -11,16 +11,36 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-from pickle import TRUE
-import os
+#from pickle import TRUE
+
 #import dotenv
 
 #from decouple import config
-from dotenv import load_dotenv
-load_dotenv()
+#from dotenv import load_dotenv
+#load_dotenv()
+
+
+import json
+import os
+from django.core.exceptions import ImproperlyConfigured
+
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
+    secrets = json.load(secrets_file)
+
+def get_secret(setting, secrets=secrets):
+    """Get secret setting or fail with ImproperlyConfigured"""
+    try:
+        return secrets[setting]
+    except KeyError:
+        raise ImproperlyConfigured("Set the {} setting".format(setting))
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -29,7 +49,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 
-SECRET_KEY = str(os.getenv('SECRET_KEY'))
+SECRET_KEY = get_secret('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -70,7 +90,6 @@ ROOT_URLCONF = 'portfolio.urls'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-import os
 
 TEMPLATES = [
     {
@@ -157,4 +176,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
 RECAPTCHA_PUBLIC_KEY = '6LcOaXogAAAAAFN2ULOaRCoW-GZqWrayRzcJaUWU'
-RECAPTCHA_PRIVATE_KEY = str(os.getenv('RECAPTCHA_PRIVATE_KEY'))
+RECAPTCHA_PRIVATE_KEY = get_secret('RECAPTCHA_PRIVATE_KEY')
