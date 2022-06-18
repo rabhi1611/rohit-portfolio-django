@@ -19,24 +19,28 @@ from pathlib import Path
 #from dotenv import load_dotenv
 #load_dotenv()
 
-
-import json
 import os
-from django.core.exceptions import ImproperlyConfigured
-
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
-    secrets = json.load(secrets_file)
+import json
+
+# Normally you should not import ANYTHING from Django directly
+# into your settings, but ImproperlyConfigured is an exception.
+from django.core.exceptions import ImproperlyConfigured
+
+# JSON-based secrets module
+with open("secrets.json") as f:
+    secrets = json.loads(f.read())
 
 def get_secret(setting, secrets=secrets):
-    """Get secret setting or fail with ImproperlyConfigured"""
+    """Get the secret variable or return explicit exception."""
     try:
         return secrets[setting]
     except KeyError:
-        raise ImproperlyConfigured("Set the {} setting".format(setting))
+        error_msg = "Set the {0} environment variable".format(setting)
+        raise ImproperlyConfigured(error_msg)
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -49,7 +53,7 @@ def get_secret(setting, secrets=secrets):
 # SECURITY WARNING: keep the secret key used in production secret!
 
 
-SECRET_KEY = get_secret('SECRET_KEY')
+SECRET_KEY = get_secret("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -176,4 +180,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
 RECAPTCHA_PUBLIC_KEY = '6LcOaXogAAAAAFN2ULOaRCoW-GZqWrayRzcJaUWU'
-RECAPTCHA_PRIVATE_KEY = get_secret('RECAPTCHA_PRIVATE_KEY')
+RECAPTCHA_PRIVATE_KEY = get_secret("RECAPTCHA_PRIVATE_KEY")
