@@ -31,16 +31,15 @@ import json
 from django.core.exceptions import ImproperlyConfigured
 
 # JSON-based secrets module
-with open("secrets.json") as f:
-    secrets = json.loads(f.read())
+with open(os.path.join(BASE_DIR, 'secrets.json')) as secrets_file:
+    secrets = json.load(secrets_file)
 
 def get_secret(setting, secrets=secrets):
-    """Get the secret variable or return explicit exception."""
+    """Get secret setting or fail with ImproperlyConfigured"""
     try:
         return secrets[setting]
     except KeyError:
-        error_msg = "Set the {0} environment variable".format(setting)
-        raise ImproperlyConfigured(error_msg)
+        raise ImproperlyConfigured("Set the {} setting".format(setting))
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
