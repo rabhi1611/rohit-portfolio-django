@@ -1,5 +1,1 @@
-.env 
-*.py[co]
-*.sw[po]
-*~
-/secrets.json
+.env
