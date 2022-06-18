@@ -9,14 +9,16 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from ctypes import cast
 from pathlib import Path
 
-from traitlets import default
-from decouple import config
 
-import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -38,7 +40,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 
-SECRET_KEY = config('SECRET_KEY', default = 'SECRET_KEY')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -165,4 +167,4 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
 RECAPTCHA_PUBLIC_KEY = '6LcOaXogAAAAAFN2ULOaRCoW-GZqWrayRzcJaUWU'
-RECAPTCHA_PRIVATE_KEY = config('RECAPTCHA_PRIVATE_KEY', cast = str)
+RECAPTCHA_PRIVATE_KEY = os.getenv('RECAPTCHA_PRIVATE_KEY')
